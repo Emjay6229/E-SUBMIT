@@ -52,7 +52,6 @@ export class ResetPassword {
             }
 
             const securePass = await bcrypt.hash(newPassword, bcrypt.genSaltSync(10));
-            
             const updatedPassword = await Employee.findOneAndUpdate({ verifyToken: token }, { password: securePass }, 
                 { new: true, runValidators: true }).select("firstName lastName email password")
 

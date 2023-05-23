@@ -18,13 +18,13 @@ export const viewMyProfile = async (req: Request, res: Response) => {
 
         // Extract and store user name from the decoded token
         // const loggedInUser = decodedToken.userName;
-        const id = req.params.id;
 
         // Check if the params is same as the logged in user
         // if ( userName !== loggedInUser ) {
         //   return res.send("Unauthorized Request")
         // }
 
+        const id = req.params.id
         // Retrieve user profile from database
         const myProfile = await Employee.findOne({_id: id})
             .select( "_id firstName lastName userName email role" );
@@ -42,12 +42,11 @@ export const editMyProfile = async (req: Request, res: Response) => {
     try {
         // const decodedToken = decodeToken(req.cookies.jwt) as JwtPayload
         // const loggedInUser = decodedToken.userName;
-        const id = req.params.id;
 
         // if ( userName !== loggedInUser ) {
         //   return res.send("Unauthorized Request")
         // }
-
+        const id = req.params.id;
         const updatedProfile = await Employee.findOneAndUpdate( { _id: id }, req.body, { 
             new: true, 
             runValidators: true
@@ -81,12 +80,11 @@ export const deleteMyProfile = async (req: Request, res: Response) => {
     try {
         // const decodedToken = decodeToken(req.cookies.jwt) as JwtPayload
         // const loggedInUser = decodedToken.userName;
-        const id = req.params.id;
 
         // if ( userName !== loggedInUser ) {
         //   return res.send("Unauthorized Request")
         // }
-
+        const id = req.params.id
         await Employee.findOneAndDelete( { _id: id });
         res.status(200)
             .json({
