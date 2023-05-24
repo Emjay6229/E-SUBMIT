@@ -4,9 +4,9 @@ type Comment = InferSchemaType<typeof Schema>
 
 const commentSchema = new Schema<Comment>({
 	comment: {
-        	type: String,
-			required: true
-    	},
+		type: String,
+		required: true
+    },
    	author: {
 		type: Schema.Types.ObjectId,
 		ref: "Employee"
