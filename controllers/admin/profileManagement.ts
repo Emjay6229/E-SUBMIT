@@ -6,7 +6,7 @@ import { Request, Response } from 'express'
 export const viewAllEmployees = async ( req: Request, res: Response ) => {
     try {
         const employees = await Employee.find()
-            .select( "_id firstName lastName userName email role isVerified isActive" )
+            .select( "firstName lastName userName email role isVerified isActive" )
 
         if(!employees) {
             return res.send("Could not retrieve any employee")
@@ -27,7 +27,7 @@ export const viewAllEmployees = async ( req: Request, res: Response ) => {
 export const viewEmployee = async ( req: Request, res: Response ) => {
     try {
         const employee = await Employee.findOne({ _id: req.params.id })
-            .select( "_id firstName lastName userName email isActive isVerified role" )
+            .select( "firstName lastName userName email isActive isVerified role" )
 
         if(!employee) {
             return res.send("Could not retrieve any employee")

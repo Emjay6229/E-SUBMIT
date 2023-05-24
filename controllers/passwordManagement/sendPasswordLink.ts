@@ -8,12 +8,14 @@ import { StatusCodes } from 'http-status-codes'
 
 config();
 
+// Mailgun message data parameters
 const domain = process.env.DOMAIN as string
 const key = process.env.api_key as string
 
+// @ Send email
+// This function verifies the user's email, creates a reset token and sends an email containing reset link
 export const verifyResetEmailAndSendLink = async ( req: Request, res:Response, email: string ) => {
     try {
-         // verify user email and create reset token
          const employee:any = await Employee.findOne( { email } )
          
          if( !employee ) {
@@ -36,6 +38,6 @@ export const verifyResetEmailAndSendLink = async ( req: Request, res:Response, e
          sendToMail(domain, key, messageData)
     } catch (error: any) {
         console.error(error);
-        res.status(StatusCodes.BAD_REQUEST).send("Error occured: Could not send password link")
+        return res.status(StatusCodes.BAD_REQUEST).send("Error occured: Could not send password link")
     }
 }

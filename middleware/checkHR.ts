@@ -10,8 +10,9 @@ export async function isHR(req: Request, res: Response, next: NextFunction) {
     const user: any = await Employee.findOne({ _id: decoded.userId })
 
     // Check if the user making the request is HR
+    // If the user is HR, allow them to proceed to the next middleware function
     if (user.role === "HR") {
-      next();  // If the user is HR, allow them to proceed to the next middleware function
+      next(); 
     } else {
       return res.status(StatusCodes.FORBIDDEN).json({ message: "ONLY HR! You are not authorized to perform this action" });
     }

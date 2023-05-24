@@ -9,10 +9,11 @@ import { Comment } from "../../model/Comment"
 
 config()
 
+// Message data parameters
 const domain = process.env.DOMAIN as string
 const key = process.env.API_KEY as string
 
-// view all reports for an employee
+// view all reports for a specific employee
 export const viewAllReportForEmployee = async(req: Request, res: Response) => {
     try {
         const report = await Report.find({ author: req.params.id })
@@ -31,7 +32,7 @@ export const viewSingleReport = async(req: Request, res: Response) => {
     try {
         console.log(req.params.reportId)
         const report = await Report.findOne({ _id: req.params.reportId })
-            .populate({ path: "author",  select: "firstName lastName userName email role"})
+            .populate({ path: "author",  select: "firstName lastName userName email role" })
             .populate({ path: "adminComment", select: "comment author" })
 
             console.log(report)
@@ -57,9 +58,7 @@ export const addCommentToReport = async(req: Request, res: Response) => {
         }
 
         const reportComment = new Comment( {
-            comment, 
-            author: report.author._id, 
-            report: report._id
+            comment, author: report.author._id, report: report._id
         })
 
         report.adminComment = reportComment._id

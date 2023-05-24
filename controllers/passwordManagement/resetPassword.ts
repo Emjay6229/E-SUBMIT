@@ -3,9 +3,9 @@ import { config } from 'dotenv'
 import { Request, Response } from 'express'
 import bcrypt from 'bcrypt'
 import { Employee } from '../../model/Employee'
-import { verifyResetEmailAndSendLink } from './sendPasswordLink';
-import { decodeToken } from '../../middleware/decodeToken';
-import { JwtPayload } from 'jsonwebtoken';
+import { verifyResetEmailAndSendLink } from './sendPasswordLink'
+import { decodeToken } from '../../middleware/decodeToken'
+import { JwtPayload } from 'jsonwebtoken'
 
 config();
 
@@ -52,12 +52,14 @@ export class ResetPassword {
             }
 
             const securePass = await bcrypt.hash(newPassword, bcrypt.genSaltSync(10));
-            const updatedPassword = await Employee.findOneAndUpdate({ verifyToken: token }, { password: securePass }, 
+            const updated = await Employee.findOneAndUpdate({ verifyToken: token }, { password: securePass }, 
                 { new: true, runValidators: true }).select("firstName lastName email password")
 
-            res.status(201).json(updatedPassword);
-            console.log("Password has been successfully reset")
-            
+            console.log("Your password has been successfully reset")
+            return res.status(201).json({
+                message: "Your Password has been successfully reset",
+                updated 
+            });
         } catch(err: any) {
             console.log(err)
             res.status(201).json(err.message)

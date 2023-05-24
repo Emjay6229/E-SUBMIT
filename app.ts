@@ -10,11 +10,11 @@ config()
 const app = express()
 
 // IMPORT MIDDLEWARES
-import { verifyToken } from './middleware/authenticate';
-import { isVerified } from './middleware/checkVerified';
-import { isActive } from './middleware/checkActive';
-import { isAdmin } from './middleware/checkAdmin';
-import { isHR } from './middleware/checkHR';
+import { verifyToken } from './middleware/authenticate'
+import { isVerified } from './middleware/checkVerified'
+import { isActive } from './middleware/checkActive'
+import { isAdmin } from './middleware/checkAdmin'
+import { isHR } from './middleware/checkHR'
 import { isDev } from './middleware/checkDeveloper'
 
 // IMPORT ROUTES
@@ -55,7 +55,7 @@ const { port } = process.env || 5000;
 const server = async () => {
     try {
         await connectToDatabase()
-        app.listen( port, () => console.log(`Server is running on port ${port}`) )
+        app.listen(port, () => console.log(`Server is running on port ${port}`))
     } catch (error: any) {
         console.log(error.message)
     }

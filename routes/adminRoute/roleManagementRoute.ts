@@ -5,7 +5,7 @@ import { makeAdmin, makeHR, makeDev } from '../../controllers/admin/roleManageme
 
 router.route("/adminRole/:id")
     .patch(makeAdmin)
-
+    
 router.route("/hrRole/:id")
     .patch(makeHR)
 

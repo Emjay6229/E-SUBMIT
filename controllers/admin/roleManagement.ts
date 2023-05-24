@@ -8,7 +8,6 @@ export const makeAdmin = async (req:Request, res: Response) => {
         if(!employee) {
             return res.send("Could not retrieve any employee")
         }
-
         if(employee.role === "Admin") {
             return res.status(200).json({ message: `${employee.userName} is already Admin` })
         } 
@@ -29,7 +28,6 @@ export const makeHR = async ( req: Request, res: Response ) => {
         if(!employee) {
             return res.send("Could not retrieve any employee")
         }
-
         if(employee.role === "HR") {
             return res.status(200).json({ message: `${employee.userName} is already HR` })
         } 
@@ -51,7 +49,6 @@ export const makeDev = async ( req: Request, res: Response ) => {
         if(!employee) {
             return res.send("Could not retrieve any employee")
         }
-
         if(employee.role === "Developer") {
             return res.status(200).json({ message: `${employee.userName} is already a Developer` })
         } 

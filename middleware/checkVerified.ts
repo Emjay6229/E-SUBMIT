@@ -7,9 +7,10 @@ import { JwtPayload } from 'jsonwebtoken'
 export async function isVerified(req: Request, res: Response, next: NextFunction) {
   try {
         const decoded = decodeToken(req.cookies.jwt) as JwtPayload
-
         const user: any = await Employee.findOne({ _id: decoded.userId })
-
+        
+        // Check if the user is verified
+        // If the user is verified, allow them to proceed to the next middleware function
         if ( user.isVerified ) {
           next();
         } else {
