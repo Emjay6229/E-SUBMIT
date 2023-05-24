@@ -1,5 +1,4 @@
 import mongoose, { Schema, InferSchemaType } from 'mongoose'
-
 type Report = InferSchemaType<typeof Schema>
 
 const reportSchema = new Schema<Report>({
