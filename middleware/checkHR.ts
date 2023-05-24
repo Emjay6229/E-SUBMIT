@@ -6,7 +6,6 @@ import { decodeToken } from './decodeToken';
 
 export async function isHR(req: Request, res: Response, next: NextFunction) {
     const decoded = decodeToken(req.cookies.jwt) as JwtPayload
-
     const user: any = await Employee.findOne({ _id: decoded.userId })
 
     // Check if the user making the request is HR

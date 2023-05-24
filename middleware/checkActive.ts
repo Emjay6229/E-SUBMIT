@@ -11,7 +11,7 @@ export async function isActive(req: Request, res: Response, next: NextFunction) 
     // Check if the user making the request is active
     // If the user is active, allow them to proceed to the next middleware function
      // If the user is not active, return an error response
-    if (user.isActive ) {
+    if (user.isActive) {
       next();
     } else {
       res.status(StatusCodes.FORBIDDEN).json({ message: "This account has been deactivated" });
